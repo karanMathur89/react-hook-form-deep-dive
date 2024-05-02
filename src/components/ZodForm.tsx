@@ -1,6 +1,6 @@
 "use client"
 
-import Heading from "./Heading"
+import Heading from "./layout/Heading"
 
 export default function ZodForm() {
   return (
