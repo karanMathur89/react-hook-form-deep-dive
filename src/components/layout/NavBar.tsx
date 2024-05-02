@@ -16,8 +16,8 @@ export default function NavBar() {
       text: "Vanilla RHF",
     },
     {
-      href: "/zod-form",
-      text: "Zod RHF",
+      href: "/vanilla-form-extended",
+      text: "Vanilla RHF 2",
     },
   ]
 

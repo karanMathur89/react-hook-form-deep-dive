@@ -6,21 +6,38 @@ import Heading from "./layout/Heading"
 import ErrorMessage from "./ErrorMessage"
 import { useEffect } from "react"
 
-export default function VanillaForm() {
+export default function VanillaFormExtended() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
     getValues,
+    // additional functions
+    setFocus,
+    setValue,
+    resetField,
   } = useForm()
+
+  //? set email field to a fixed value
+  setValue("email", "45@gmail.com")
 
   //* HANDLER FUNCTIONS
   async function onSubmit(data: FieldValues) {
-    console.log(data)
+    console.log("Password is ", getValues("password"))
     await new Promise((resolve) => setTimeout(resolve, 2000))
-    reset()
+    //? set focus after submission to email field
+    setFocus("email")
+    // reset()
+    //? only reset confirmPassword field after submission
+    resetField("confirmPassword")
   }
+
+  //* EFFECT
+  useEffect(() => {
+    //? set focus to email field after render
+    setFocus("email")
+  }, [setFocus])
 
   return (
     <>
