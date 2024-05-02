@@ -2,11 +2,11 @@
 
 import Heading from "./Heading"
 
-export default function VanillaForm() {
+export default function ZodForm() {
   return (
     <>
       <Heading>
-        <span className="text-sky-600">Vanilla</span> React-Hook-Form
+        <span className="text-sky-600">Zod</span> React-Hook-Form
       </Heading>
       <form className="space-y-4 bg-gray-100 px-4 py-12 shadow">
         <p>
