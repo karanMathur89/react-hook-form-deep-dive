@@ -13,11 +13,15 @@ export default function NavBar() {
   const links: NavLink[] = [
     {
       href: "/",
-      text: "Vanilla RHF",
+      text: "Vanilla",
     },
     {
       href: "/vanilla-form-extended",
-      text: "Vanilla RHF 2",
+      text: "Vanilla Extended",
+    },
+    {
+      href: "/zod-form",
+      text: "Zod Form",
     },
   ]
 

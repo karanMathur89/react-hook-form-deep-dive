@@ -4,7 +4,6 @@ import { type FieldValues, useForm } from "react-hook-form"
 
 import Heading from "./layout/Heading"
 import ErrorMessage from "./ErrorMessage"
-import { useEffect } from "react"
 
 export default function VanillaForm() {
   const {

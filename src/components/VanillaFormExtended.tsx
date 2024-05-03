@@ -10,21 +10,33 @@ export default function VanillaFormExtended() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting,
+      dirtyFields,
+      isDirty,
+      submitCount,
+      touchedFields,
+    },
     reset,
     getValues,
     // additional functions
     setFocus,
     setValue,
     resetField,
+    getFieldState,
   } = useForm()
 
   //? set email field to a fixed value
-  setValue("email", "45@gmail.com")
+  // setValue("email", "45@gmail.com")
 
   //* HANDLER FUNCTIONS
   async function onSubmit(data: FieldValues) {
-    console.log("Password is ", getValues("password"))
+    console.group("START")
+    console.log({ data })
+    console.log("Password is", getValues("password"))
+    console.groupEnd()
+
     await new Promise((resolve) => setTimeout(resolve, 2000))
     //? set focus after submission to email field
     setFocus("email")
@@ -36,14 +48,20 @@ export default function VanillaFormExtended() {
   //* EFFECT
   useEffect(() => {
     //? set focus to email field after render
-    setFocus("email")
+    // setFocus("email")
   }, [setFocus])
+
+  //* LOGS
+  // console.log({ dirtyFields })
+  console.log({ touchedFields })
+  console.log(getFieldState("email").isTouched)
 
   return (
     <>
       <Heading>
-        <span className="text-sky-600">Vanilla</span> React-Hook-Form
+        <span className="text-sky-600">Vanilla</span> React-Hook-Form (Extended)
       </Heading>
+      <pre>Form has been submitted {submitCount} times</pre>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 bg-gray-100 px-4 py-12 shadow"
@@ -78,7 +96,7 @@ export default function VanillaFormExtended() {
               required: "Password is required",
               minLength: {
                 value: 6,
-                message: "Password should be atleast 10 characters long",
+                message: "Password should be atleast 6 characters long",
               },
             })}
             placeholder="Password"
