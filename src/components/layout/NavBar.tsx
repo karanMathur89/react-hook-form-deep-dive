@@ -21,7 +21,11 @@ export default function NavBar() {
     },
     {
       href: "/zod-form",
-      text: "Zod Form",
+      text: "Zod",
+    },
+    {
+      href: "/zod-server-form",
+      text: "Zod Server",
     },
   ]
 
