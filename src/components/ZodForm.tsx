@@ -1,21 +1,25 @@
 "use client"
 
-import { type FieldValues, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import Heading from "./layout/Heading"
 import ErrorMessage from "./ErrorMessage"
+import { TSignUpSchema, signUpSchema } from "@/lib/types"
 
 export default function ZodForm() {
+  //* USEFORM
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    getValues,
-  } = useForm()
+  } = useForm<TSignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+  })
 
   //* HANDLER FUNCTIONS
-  async function onSubmit(data: FieldValues) {
+  async function onSubmit(data: TSignUpSchema) {
     console.log(data)
     await new Promise((resolve) => setTimeout(resolve, 2000))
     reset()
@@ -37,9 +41,7 @@ export default function ZodForm() {
           </label>
           <input
             type="email"
-            {...register("email", {
-              required: "Email is required",
-            })}
+            {...register("email")}
             placeholder="Email"
             id="email"
             name="email"
@@ -56,13 +58,7 @@ export default function ZodForm() {
           </label>
           <input
             type="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password should be atleast 10 characters long",
-              },
-            })}
+            {...register("password")}
             placeholder="Password"
             id="password"
             name="password"
@@ -79,11 +75,7 @@ export default function ZodForm() {
           </label>
           <input
             type="password"
-            {...register("confirmPassword", {
-              required: "Confirm Password is required",
-              validate: (value) =>
-                value === getValues("password") || "Passwords must macth",
-            })}
+            {...register("confirmPassword")}
             placeholder="Confirm Password"
             id="confirmPassword"
             name="confirmPassword"
