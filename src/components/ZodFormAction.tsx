@@ -25,7 +25,7 @@ export default function ZodFormAction() {
       email: "abc@gmail.com",
       password: "12",
       confirmPassword: "12",
-      age: 19,
+      age: 18,
     },
   })
 
@@ -38,12 +38,13 @@ export default function ZodFormAction() {
     const result = await trigger()
     //guard
     if (!result) return
+
     // sleep for 1 second
     startTransition(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 3000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       addData(data)
     })
-    // reset()
+    reset()
   }
 
   // async function onClick(data: TSignUpSchema) {
@@ -57,7 +58,7 @@ export default function ZodFormAction() {
         <span className="text-sky-700">Zod</span> React-Hook-Form Action
       </Heading>
       {/* <p>{isSubmitting ? "Submitting..." : "Not submitting..."}</p> */}
-      <p>{isPending ? "Pending..." : "Not pending..."}</p>
+
       <form
         // onSubmit={handleSubmit(onClick)}
         action={async () => {
@@ -146,6 +147,22 @@ export default function ZodFormAction() {
           )}
         </button>
       </form>
+      <PendingStatus label="isPending" status={isPending} />
     </>
+  )
+}
+
+function PendingStatus({ status, label }: { status: boolean; label: string }) {
+  return (
+    <p className="my-4 flex items-center gap-2 rounded border  border-gray-300 bg-gray-100 p-4">
+      <span className="inline-block rounded-full border border-gray-400/60 bg-gray-400/40 px-3 py-1 text-sm font-semibold ">
+        {label}
+      </span>{" "}
+      {status ? (
+        <span className="font-semibold text-amber-600">Submitting</span>
+      ) : (
+        <span className="font-semibold text-sky-600">Not Submitting</span>
+      )}
+    </p>
   )
 }
