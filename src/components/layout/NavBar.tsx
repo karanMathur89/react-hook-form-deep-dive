@@ -27,6 +27,10 @@ export default function NavBar() {
       href: "/zod-server-form",
       text: "Zod Server",
     },
+    {
+      href: "/zod-form-action",
+      text: "Zod Action",
+    },
   ]
 
   const path = usePathname()
