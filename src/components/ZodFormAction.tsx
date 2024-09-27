@@ -1,6 +1,6 @@
 "use client"
 
-import { useTransition } from "react"
+import { useEffect, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
@@ -18,8 +18,8 @@ export default function ZodFormAction() {
     trigger,
     getValues,
     reset,
-    formState: { errors, isSubmitting },
-    handleSubmit,
+    setFocus,
+    formState: { errors, dirtyFields },
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -30,7 +30,7 @@ export default function ZodFormAction() {
     },
   })
 
-  // USETRANSITION
+  //* USETRANSITION
   const [isPending, startTransition] = useTransition()
 
   //* HANDLER FUNCTIONS
@@ -47,10 +47,18 @@ export default function ZodFormAction() {
         toast.error(res.error.message)
       } else {
         toast.success(`${res.success} added.`)
+        reset(
+          { email: "", password: "", confirmPassword: "", age: 18 },
+          { keepDirtyValues: false },
+        )
       }
     })
-    reset()
   }
+
+  //* USEEFFECT
+  useEffect(() => {
+    setFocus("email")
+  }, [setFocus, isPending])
 
   return (
     <>
@@ -129,6 +137,7 @@ export default function ZodFormAction() {
             placeholder=""
             id="age"
             name="age"
+            min={18}
             className="w-full rounded border-gray-400"
           />
           {errors.age && <ErrorMessage>{`${errors.age.message}`}</ErrorMessage>}
