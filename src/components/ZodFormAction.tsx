@@ -3,6 +3,7 @@
 import { useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { toast } from "sonner"
 
 import Heading from "./layout/Heading"
 import ErrorMessage from "./ErrorMessage"
@@ -15,10 +16,10 @@ export default function ZodFormAction() {
   const {
     register,
     trigger,
-    formState: { errors, isSubmitting },
     getValues,
-    handleSubmit,
     reset,
+    formState: { errors, isSubmitting },
+    handleSubmit,
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -34,33 +35,30 @@ export default function ZodFormAction() {
 
   //* HANDLER FUNCTIONS
   async function onSubmit(data: TSignUpSchema) {
-    //? Manually trigger validation
+    //? Manually trigger validation when used with form action
     const result = await trigger()
     //guard
     if (!result) return
 
-    // sleep for 1 second
     startTransition(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      addData(data)
+      await new Promise((resolve) => setTimeout(resolve, 1000)) // sleep for 1 second
+      const res = await addData(data)
+      if (res.error) {
+        toast.error(res.error.message)
+      } else {
+        toast.success(`${res.success} added.`)
+      }
     })
     reset()
   }
-
-  // async function onClick(data: TSignUpSchema) {
-  //   await onSubmit(data)
-  //   // setTest(true)
-  // }
 
   return (
     <>
       <Heading>
         <span className="text-sky-700">Zod</span> React-Hook-Form Action
       </Heading>
-      {/* <p>{isSubmitting ? "Submitting..." : "Not submitting..."}</p> */}
 
       <form
-        // onSubmit={handleSubmit(onClick)}
         action={async () => {
           onSubmit(getValues())
         }}
@@ -68,7 +66,7 @@ export default function ZodFormAction() {
       >
         {/* //---EMAIL--- */}
         <div>
-          <label htmlFor="email" className="block text-gray-700">
+          <label htmlFor="email" className="block text-sm text-gray-700">
             Email
           </label>
           <input
@@ -85,7 +83,7 @@ export default function ZodFormAction() {
         </div>
         {/* //---PASSWORD--- */}
         <div>
-          <label htmlFor="password" className="block text-gray-700">
+          <label htmlFor="password" className="block text-sm text-gray-700">
             Password
           </label>
           <input
@@ -102,7 +100,10 @@ export default function ZodFormAction() {
         </div>
         {/* //---CONFIRM PASSWORD--- */}
         <div>
-          <label htmlFor="confirmPassword" className="block text-gray-700">
+          <label
+            htmlFor="confirmPassword"
+            className="block text-sm text-gray-700"
+          >
             Confirm Password
           </label>
           <input
@@ -119,7 +120,7 @@ export default function ZodFormAction() {
         </div>
         {/* //---AGE--- */}
         <div>
-          <label htmlFor="age" className="block text-gray-700">
+          <label htmlFor="age" className="block text-sm text-gray-700">
             Age
           </label>
           <input
