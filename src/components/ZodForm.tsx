@@ -7,6 +7,7 @@ import Heading from "./layout/Heading"
 import ErrorMessage from "./ErrorMessage"
 import { z } from "zod"
 
+//* ZOD SCHEMA
 export const FormSchema = z
   .object({
     email: z.string().email(),
@@ -18,8 +19,10 @@ export const FormSchema = z
     path: ["confirmPassword"],
   })
 
+//* FORM VALUES
 export type FormValues = z.infer<typeof FormSchema>
 
+//# FORM COMPONENT
 export default function ZodForm() {
   //* USEFORM
   const form = useForm<FormValues>({
