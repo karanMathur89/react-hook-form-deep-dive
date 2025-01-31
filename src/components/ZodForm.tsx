@@ -5,24 +5,37 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import Heading from "./layout/Heading"
 import ErrorMessage from "./ErrorMessage"
-import { TSignUpSchema, signUpSchema } from "@/lib/types"
+import { z } from "zod"
+
+export const FormSchema = z
+  .object({
+    email: z.string().email(),
+    password: z.string().min(2, "Password must be atleast 2 characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords must match",
+    path: ["confirmPassword"],
+  })
+
+export type FormValues = z.infer<typeof FormSchema>
 
 export default function ZodForm() {
   //* USEFORM
+  const form = useForm<FormValues>({
+    resolver: zodResolver(FormSchema),
+  })
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
-  } = useForm<TSignUpSchema>({
-    resolver: zodResolver(signUpSchema),
-  })
+  } = form
 
   //* HANDLER FUNCTIONS
-  async function onSubmit(data: TSignUpSchema) {
-    console.log(data)
+  async function onSubmit(values: FormValues) {
     await new Promise((resolve) => setTimeout(resolve, 2000))
-    reset()
+    console.log({ values })
   }
 
   return (
@@ -41,10 +54,9 @@ export default function ZodForm() {
           </label>
           <input
             type="email"
-            {...register("email")}
             placeholder="Email"
             id="email"
-            name="email"
+            {...register("email")}
             className="w-full rounded"
           />
           {errors.email && (
@@ -58,10 +70,9 @@ export default function ZodForm() {
           </label>
           <input
             type="password"
-            {...register("password")}
             placeholder="Password"
             id="password"
-            name="password"
+            {...register("password")}
             className="w-full rounded border-gray-400"
           />
           {errors.password && (
@@ -75,10 +86,9 @@ export default function ZodForm() {
           </label>
           <input
             type="password"
-            {...register("confirmPassword")}
             placeholder="Confirm Password"
             id="confirmPassword"
-            name="confirmPassword"
+            {...register("confirmPassword")}
             className="w-full rounded border-gray-400"
           />
           {errors.confirmPassword && (
@@ -88,7 +98,7 @@ export default function ZodForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded bg-gray-700 p-2 font-semibold tracking-wide text-gray-50 disabled:bg-gray-500"
+          className="w-full cursor-pointer rounded bg-gray-700 p-2 font-semibold tracking-wide text-gray-50 hover:bg-gray-900 active:bg-gray-950 disabled:bg-gray-500"
         >
           Submit
         </button>
