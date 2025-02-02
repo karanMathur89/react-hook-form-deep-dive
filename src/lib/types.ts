@@ -16,3 +16,10 @@ export const signUpSchema = z
   })
 
 export type TSignUpSchema = z.infer<typeof signUpSchema>
+
+export const ShadcnFormSchema = z.object({
+  name: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  email: z.string().email({ message: "The email is absolutely invalid." }),
+})
