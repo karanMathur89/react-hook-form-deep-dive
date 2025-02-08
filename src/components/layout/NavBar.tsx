@@ -46,9 +46,10 @@ export default function NavBar() {
             <Link
               href={link.href}
               className={cn(
-                "inline-block rounded-full bg-gray-300 px-3 py-2 text-sm",
+                "inline-block rounded-full border border-gray-300 bg-gray-100 px-3 py-2 text-sm",
                 {
-                  "bg-emerald-600 text-white": link.href === path,
+                  "border-emerald-800 bg-emerald-600 text-white":
+                    link.href === path,
                 },
               )}
             >
