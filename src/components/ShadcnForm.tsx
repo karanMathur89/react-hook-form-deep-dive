@@ -45,15 +45,15 @@ export function ShadcnForm() {
   ///* HANDLER FUNCTIONS
   async function onSubmit(values: z.infer<typeof ShadcnFormSchema>) {
     await new Promise((r) => setTimeout(r, 500)) // delay
-    // console.table(values)
+    // console.log(values)
 
     const res = await shadcnAction(values)
     // console.log({ res })
     if (res.success) {
-      toast(
-        <div>
-          <p className="font-medium">Form submitted Sucessfully!</p>
-          <p className="opacity-50">Form reset.</p>
+      toast.success(
+        <div className="text-emerald-300">
+          <p className="font-medium">Form submitted Successfully!</p>
+          {/* <p className="opacity-80">Form reset.</p> */}
         </div>,
       )
     } else {
