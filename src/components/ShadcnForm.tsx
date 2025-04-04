@@ -76,7 +76,7 @@ export function ShadcnForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto max-w-md space-y-8 rounded-lg border border-gray-300 bg-gray-100/70 p-4"
+        className="space-y-8 bg-gray-100/70 mx-auto p-4 border border-gray-300 rounded-lg max-w-md"
       >
         {/* ---------------------------------------- */}
         {/* NAME */}
@@ -118,7 +118,7 @@ export function ShadcnForm() {
           control={form.control}
           name="remote"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-y-0 space-x-3 rounded-md border p-4">
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 p-4 border rounded-md">
               <FormControl>
                 <Checkbox
                   checked={field.value}
@@ -179,7 +179,7 @@ export function ShadcnForm() {
           type="submit"
           variant="default"
           disabled={formState.isSubmitting}
-          className="w-full disabled:bg-neutral-700"
+          className="disabled:bg-neutral-700 w-full"
         >
           {formState.isSubmitting ? "Submitting..." : "Submit"}
           {formState.isSubmitting && (

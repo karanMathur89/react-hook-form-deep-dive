@@ -70,11 +70,11 @@ export default function ZodFormAction() {
         action={async () => {
           onSubmit(getValues())
         }}
-        className="space-y-4 bg-gray-100 px-4 py-12 shadow"
+        className="space-y-4 bg-gray-100 shadow px-4 py-12 rounded-lg"
       >
         {/* //---EMAIL--- */}
         <div>
-          <label htmlFor="email" className="block text-sm text-gray-700">
+          <label htmlFor="email" className="block text-gray-700 text-sm">
             Email
           </label>
           <input
@@ -83,7 +83,7 @@ export default function ZodFormAction() {
             placeholder="Email"
             id="email"
             name="email"
-            className="w-full rounded"
+            className="rounded-md w-full"
           />
           {errors.email && (
             <ErrorMessage>{`${errors.email.message}`}</ErrorMessage>
@@ -91,7 +91,7 @@ export default function ZodFormAction() {
         </div>
         {/* //---PASSWORD--- */}
         <div>
-          <label htmlFor="password" className="block text-sm text-gray-700">
+          <label htmlFor="password" className="block text-gray-700 text-sm">
             Password
           </label>
           <input
@@ -100,7 +100,7 @@ export default function ZodFormAction() {
             placeholder="Password"
             id="password"
             name="password"
-            className="w-full rounded border-gray-400"
+            className="border-gray-400 rounded-md w-full"
           />
           {errors.password && (
             <ErrorMessage>{`${errors.password.message}`}</ErrorMessage>
@@ -110,7 +110,7 @@ export default function ZodFormAction() {
         <div>
           <label
             htmlFor="confirmPassword"
-            className="block text-sm text-gray-700"
+            className="block text-gray-700 text-sm"
           >
             Confirm Password
           </label>
@@ -120,7 +120,7 @@ export default function ZodFormAction() {
             placeholder="Confirm Password"
             id="confirmPassword"
             name="confirmPassword"
-            className="w-full rounded border-gray-400"
+            className="border-gray-400 rounded-md w-full"
           />
           {errors.confirmPassword && (
             <ErrorMessage>{`${errors.confirmPassword.message}`}</ErrorMessage>
@@ -128,7 +128,7 @@ export default function ZodFormAction() {
         </div>
         {/* //---AGE--- */}
         <div>
-          <label htmlFor="age" className="block text-sm text-gray-700">
+          <label htmlFor="age" className="block text-gray-700 text-sm">
             Age
           </label>
           <input
@@ -138,19 +138,19 @@ export default function ZodFormAction() {
             id="age"
             name="age"
             min={18}
-            className="w-full rounded border-gray-400"
+            className="border-gray-400 rounded-md w-full"
           />
           {errors.age && <ErrorMessage>{`${errors.age.message}`}</ErrorMessage>}
         </div>
         <button
           type="submit"
           disabled={isPending}
-          className="flex w-full items-center justify-center gap-2 rounded bg-emerald-700 p-2 font-semibold tracking-tight  text-gray-50 disabled:cursor-not-allowed disabled:bg-gray-500"
+          className="flex justify-center items-center gap-2 bg-emerald-700 disabled:bg-gray-500 p-2 rounded-md w-full font-semibold text-gray-50 tracking-tight disabled:cursor-not-allowed"
         >
           {isPending ? (
             <>
               Submitting{" "}
-              <Loader2 className="size-5 animate-spin stroke-[1.5] opacity-70" />
+              <Loader2 className="opacity-70 stroke-[1.5] size-5 animate-spin" />
             </>
           ) : (
             <>Submit</>
@@ -164,8 +164,8 @@ export default function ZodFormAction() {
 
 function PendingStatus({ status, label }: { status: boolean; label: string }) {
   return (
-    <p className="my-4 flex items-center gap-2 rounded border  border-gray-300 bg-gray-100 p-4">
-      <span className="inline-block rounded-full border border-gray-400/60 bg-gray-400/40 px-3 py-1 text-sm font-semibold ">
+    <p className="flex items-center gap-2 bg-gray-100 my-4 p-4 border border-gray-300 rounded-md">
+      <span className="inline-block bg-gray-400/40 px-3 py-1 border border-gray-400/60 rounded-full font-semibold text-sm">
         {label}
       </span>{" "}
       {status ? (

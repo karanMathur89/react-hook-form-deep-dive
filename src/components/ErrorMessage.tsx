@@ -5,5 +5,5 @@ type ErrorMessageProps = {
 }
 
 export default function ErrorMessage({ children }: ErrorMessageProps) {
-  return <p className="mt-1 rounded text-sm text-red-600">{children}</p>
+  return <p className="mt-1 rounded-md text-red-600 text-sm">{children}</p>
 }

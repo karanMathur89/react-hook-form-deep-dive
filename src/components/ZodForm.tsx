@@ -48,7 +48,7 @@ export default function ZodForm() {
       </Heading>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4 bg-gray-100 px-4 py-12 shadow"
+        className="space-y-4 bg-gray-100 shadow px-4 py-12 rounded-lg"
       >
         {/* //---EMAIL--- */}
         <div>
@@ -60,7 +60,7 @@ export default function ZodForm() {
             placeholder="Email"
             id="email"
             {...register("email")}
-            className="w-full rounded"
+            className="rounded-md w-full"
           />
           {errors.email && (
             <ErrorMessage>{`${errors.email.message}`}</ErrorMessage>
@@ -76,7 +76,7 @@ export default function ZodForm() {
             placeholder="Password"
             id="password"
             {...register("password")}
-            className="w-full rounded border-gray-400"
+            className="border-gray-400 rounded-md w-full"
           />
           {errors.password && (
             <ErrorMessage>{`${errors.password.message}`}</ErrorMessage>
@@ -92,7 +92,7 @@ export default function ZodForm() {
             placeholder="Confirm Password"
             id="confirmPassword"
             {...register("confirmPassword")}
-            className="w-full rounded border-gray-400"
+            className="border-gray-400 rounded-md w-full"
           />
           {errors.confirmPassword && (
             <ErrorMessage>{`${errors.confirmPassword.message}`}</ErrorMessage>
@@ -101,7 +101,7 @@ export default function ZodForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full cursor-pointer rounded bg-gray-700 p-2 font-semibold tracking-wide text-gray-50 hover:bg-gray-900 active:bg-gray-950 disabled:bg-gray-500"
+          className="bg-gray-700 hover:bg-gray-900 active:bg-gray-950 disabled:bg-gray-500 p-2 rounded-md w-full font-semibold text-gray-50 tracking-wide cursor-pointer"
         >
           Submit
         </button>

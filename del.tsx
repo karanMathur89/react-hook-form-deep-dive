@@ -42,7 +42,7 @@ export default function ValidatedForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block font-medium text-gray-700 text-sm"
           >
             Email
           </label>
@@ -50,17 +50,17 @@ export default function ValidatedForm() {
             type="email"
             id="email"
             {...register("email")}
-            className="focus:ring-opacity-50 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block focus:ring-opacity-50 shadow-sm mt-1 border-gray-300 focus:border-indigo-300 rounded-md focus:ring focus:ring-indigo-200 w-full"
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+            <p className="mt-1 text-red-600 text-sm">{errors.email.message}</p>
           )}
         </div>
 
         <div>
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
+            className="block font-medium text-gray-700 text-sm"
           >
             Password
           </label>
@@ -68,10 +68,10 @@ export default function ValidatedForm() {
             type="password"
             id="password"
             {...register("password")}
-            className="focus:ring-opacity-50 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block focus:ring-opacity-50 shadow-sm mt-1 border-gray-300 focus:border-indigo-300 rounded-md focus:ring focus:ring-indigo-200 w-full"
           />
           {errors.password && (
-            <p className="mt-1 text-sm text-red-600">
+            <p className="mt-1 text-red-600 text-sm">
               {errors.password.message}
             </p>
           )}
@@ -80,7 +80,7 @@ export default function ValidatedForm() {
         <div>
           <label
             htmlFor="confirmPassword"
-            className="block text-sm font-medium text-gray-700"
+            className="block font-medium text-gray-700 text-sm"
           >
             Confirm Password
           </label>
@@ -88,10 +88,10 @@ export default function ValidatedForm() {
             type="password"
             id="confirmPassword"
             {...register("confirmPassword")}
-            className="focus:ring-opacity-50 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200"
+            className="block focus:ring-opacity-50 shadow-sm mt-1 border-gray-300 focus:border-indigo-300 rounded-md focus:ring focus:ring-indigo-200 w-full"
           />
           {errors.confirmPassword && (
-            <p className="mt-1 text-sm text-red-600">
+            <p className="mt-1 text-red-600 text-sm">
               {errors.confirmPassword.message}
             </p>
           )}
@@ -99,15 +99,15 @@ export default function ValidatedForm() {
 
         <button
           type="submit"
-          className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none"
+          className="bg-indigo-600 hover:bg-indigo-700 shadow-sm px-4 py-2 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-full font-medium text-white text-sm"
         >
           Submit
         </button>
       </form>
 
       {submittedValues && (
-        <div className="mt-6 rounded bg-gray-100 p-4">
-          <h2 className="mb-2 text-lg font-semibold">Submitted Values:</h2>
+        <div className="bg-gray-100 mt-6 p-4 rounded-md">
+          <h2 className="mb-2 font-semibold text-lg">Submitted Values:</h2>
           <pre className="break-words whitespace-pre-wrap">
             {JSON.stringify(submittedValues, null, 2)}
           </pre>

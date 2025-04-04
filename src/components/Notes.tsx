@@ -4,7 +4,7 @@ type NotesProps = {
 
 export default function Notes({ list }: NotesProps) {
   return (
-    <ol className="my-4 list-inside list-decimal space-y-2 rounded bg-gray-100 p-4">
+    <ol className="space-y-2 bg-gray-100 my-4 p-4 rounded-md list-decimal list-inside">
       {list.map((item, i) => (
         <li key={i}>{item}</li>
       ))}
