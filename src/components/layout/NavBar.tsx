@@ -35,10 +35,6 @@ export default function NavBar() {
       href: "/shadcn-form",
       text: "Shadcn Form",
     },
-    {
-      href: "/tutorial",
-      text: "Tutorial",
-    },
   ]
 
   const path = usePathname()
