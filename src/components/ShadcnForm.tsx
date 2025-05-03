@@ -68,15 +68,17 @@ export function ShadcnForm() {
   //* USEEFFECT
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      // form.reset()
+      form.reset()
+      // If you want to reset to default values defined in useForm, you can just call form.reset()
+      // but explicitly setting 'file' ensures it's handled
     }
-  }, [formState.isSubmitSuccessful])
+  }, [formState.isSubmitSuccessful, form]) // Add form to the dependency array
 
   return (
-    <Form {...form}>
+    <Form {...form} key={`${formState.isSubmitSuccessful}`}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-gray-100/70 mx-auto p-4 border border-gray-300 rounded-lg max-w-md"
+        className="mx-auto max-w-md space-y-8 rounded-lg border border-gray-300 bg-gray-100/70 p-4"
       >
         {/* ---------------------------------------- */}
         {/* NAME */}
@@ -118,7 +120,7 @@ export function ShadcnForm() {
           control={form.control}
           name="remote"
           render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 p-4 border rounded-md">
+            <FormItem className="flex flex-row items-start space-y-0 space-x-3 rounded-md border p-4">
               <FormControl>
                 <Checkbox
                   checked={field.value}
@@ -179,7 +181,7 @@ export function ShadcnForm() {
           type="submit"
           variant="default"
           disabled={formState.isSubmitting}
-          className="disabled:bg-neutral-700 w-full"
+          className="w-full disabled:bg-neutral-700"
         >
           {formState.isSubmitting ? "Submitting..." : "Submit"}
           {formState.isSubmitting && (
