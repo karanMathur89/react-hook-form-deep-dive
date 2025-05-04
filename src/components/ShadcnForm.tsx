@@ -78,7 +78,7 @@ export function ShadcnForm() {
     <Form {...form} key={`${formState.isSubmitSuccessful}`}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto max-w-md space-y-8 rounded-lg border border-gray-300 bg-gray-100/70 p-4"
+        className="mx-auto max-w-md space-y-6 rounded-lg border border-gray-300 bg-gray-100/70 p-4"
       >
         {/* ---------------------------------------- */}
         {/* NAME */}
